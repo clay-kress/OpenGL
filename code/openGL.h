@@ -8,8 +8,6 @@
 #include <GL\glew.h>
 #include <GL\glfw3.h>
 
-#include "list.h"
-#include "map.h"
 #include "clag.h"
 #include "stb_image.h"
 
