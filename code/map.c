@@ -2,7 +2,7 @@
 
 void map_fprintf_IntString(FILE* stream, Map* map) {
       for (int i= 0; i < list_len(&map->keys); i++) {
-            char** key= (void*) list_getPtr(&map->keys, i);
+            char** key= (char**) list_getPtr(&map->keys, i);
             int* value= (int*) list_getPtr(&map->values, i);
             fprintf(stream, "%s: %d\n", *key, *value);
       }
@@ -10,7 +10,7 @@ void map_fprintf_IntString(FILE* stream, Map* map) {
 
 // --> Initializes and deletes the array and array information
 Map* newMap(int keySize, int valueSize, int maxThings) {
-      Map* map= malloc(sizeof(Map));
+      Map* map= (Map*) malloc(sizeof(Map));
       initList(&map->keys, keySize, maxThings);
       initList(&map->values, valueSize, maxThings);
       return map;

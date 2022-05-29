@@ -26,6 +26,18 @@ typedef struct {
       mat4 projection;
 } Camera;
 void camera_init(Camera* self, float sensitivity, float speed, float nearZ, float farZ, float fov, vec3* position, vec3* direction, const char* ID);
+void camera_update(Camera* self);
+void camera_setSensitivity(Camera* self, float sensitivity);
+void camera_setSpeed(Camera* self, float speed);
+void camera_setZ(Camera* self, float nearZ, float farZ);
+void camera_setFov(Camera* self, float fov);
+void camera_setAngle(Camera* self, float horizontalAngle, float verticalAngle);
+void camera_setPosition(Camera* self, vec3* position);
+void camera_setDirection(Camera* self, vec3* direction);
+void camera_setTarget(Camera* self, vec3* target);
+void camera_setUp(Camera* self, vec3* up);
+mat4 camera_getView(Camera* self);
+mat4 camera_getProjection(Camera* self);
 /* Camera *************************************************************/
 
 /* Object *************************************************************/

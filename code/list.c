@@ -3,7 +3,7 @@
 void list_printInt(FILE* stream, List* list) {
       fprintf(stream, "[");
       for (int i= 0; i < list->numThings; i++) {
-            int* value= (void*) &list->array[i * list->typeSize];
+            int* value= (int*) &list->array[i * list->typeSize];
             fprintf(stream, "%d", *value);
             if (i != list->numThings - 1) {
                   fprintf(stream, ", ");
@@ -15,7 +15,7 @@ void list_printInt(FILE* stream, List* list) {
 void list_printString(FILE* stream, List* list) {
       fprintf(stream, "[");
       for (int i= 0; i < list->numThings; i++) {
-            char** value= (void*) &list->array[i * list->typeSize];
+            char** value= (char**) &list->array[i * list->typeSize];
             fprintf(stream, "%s", *value);
             if (i != list->numThings - 1) {
                   fprintf(stream, ", ");
@@ -26,7 +26,7 @@ void list_printString(FILE* stream, List* list) {
 
 // --> Initializes and deletes the array and array information
 List* newList(int typeSize, int maxThings) {
-      List* list= malloc(sizeof(List));
+      List* list= (List*) malloc(sizeof(List));
       list->typeSize= typeSize;
       list->maxThings= maxThings;
       list->numThings= 0;

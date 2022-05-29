@@ -110,7 +110,7 @@ bool videoShader_load(VideoShader* self, const char* vertexShaderPath, const cha
             vLen++;
       }
       fseek(vertexShaderFile, 0, SEEK_SET);
-      char* vBuf= malloc(vLen + 1);
+      char* vBuf= (char*) malloc(vLen + 1);
       for (int i= 0; i < vLen; i++) {
             vBuf[i]= fgetc(vertexShaderFile);
       }
@@ -127,7 +127,7 @@ bool videoShader_load(VideoShader* self, const char* vertexShaderPath, const cha
             fLen++;
       }
       fseek(vertexShaderFile, 0, SEEK_SET);
-      char* fBuf= malloc(fLen + 1);
+      char* fBuf= (char*) malloc(fLen + 1);
       for (int i= 0; i < fLen; i++) {
             fBuf[i]= fgetc(vertexShaderFile);
       }
@@ -145,7 +145,7 @@ bool videoShader_load(VideoShader* self, const char* vertexShaderPath, const cha
       if (result == GL_FALSE) {
             int length;
             glGetShaderiv(vs, GL_INFO_LOG_LENGTH, &length);
-            char* message= malloc(length);
+            char* message= (char*) malloc(length);
             glGetShaderInfoLog(vs, length, &length, message);
             fprintf(stream, "Error: Failed to compile Vertex Shader!\n");
             fprintf(stream, "   %s", message);
@@ -161,7 +161,7 @@ bool videoShader_load(VideoShader* self, const char* vertexShaderPath, const cha
       if (result == GL_FALSE) {
             int length;
             glGetShaderiv(fs, GL_INFO_LOG_LENGTH, &length);
-            char* message= malloc(length);
+            char* message= (char*) malloc(length);
             glGetShaderInfoLog(fs, length, &length, message);
             fprintf(stream, "Error: Failed to compile Fragment Shader!\n");
             fprintf(stream, "   %s", message);
