@@ -8,7 +8,7 @@ void camera_start(Camera* self, Window* w) {
       self->winMode= &w->mode;
       self->windowRef= &w->window;
 }
-void camera_init(Camera* self, float sensitivity, float speed, float nearZ, float farZ, float fov, vec3* position, vec3* direction, char* ID) {
+void camera_init(Camera* self, float sensitivity, float speed, float nearZ, float farZ, float fov, vec3* position, vec3* direction, const char* ID) {
       self->ID= ID;
       // Init all variables to sane values.
       self->sensitivity= sensitivity;
@@ -142,7 +142,22 @@ mat4* camera_getProjection(Camera* self) {
 /* Camera *************************************************************/
 
 /* Renderer ***********************************************************/
-void renderer_setup() {
-      
+void renderer_setup(Renderer* self, const char* name, unsigned int width, unsigned int height, const char* vShaderPath, const char* fShaderPath) {
+      self->ID= name;
+      self->window= (Window*) malloc(sizeof(Window));
+      self->camera= (Camera*) malloc(sizeof(Camera));
+      self->shader= (VideoShader*) malloc(sizeof(VideoShader));
+      initList(&self->objPtrs, sizeof(Object*), 0);
+      // Init the Window
+      window_open(self->window, self->ID, width, height);
+      // Init Camera
+      vec3 pos= vec3_getVec(0, 0, 1);
+      vec3 dir= vec3_getVec(0, 0, 0);
+      // &width, &height, &aspect, &windowMode
+      camera_start(self->camera, self->window);
+      //sensitivity, speed, nearZ, farZ, fov
+      camera_init(self->camera, 1, .1, .001, 1000, 90, &pos, &dir, self->ID);
+      // Init VideoShader
+      videoShader_load(self->shader, vShaderPath, fShaderPath, self->ID);
 }
 /* Renderer ***********************************************************/

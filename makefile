@@ -1,3 +1,7 @@
+#CC=g++
+#CFLAGS=-O3 -Wfatal-errors -Wall -Wextra
+#MFLAGS=-O3 -Wfatal-errors
+
 CC=gcc
 CFLAGS=-std=c99 -O3 -Wfatal-errors -Wall -Wextra
 MFLAGS=-std=c99 -O3 -Wfatal-errors

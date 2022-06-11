@@ -33,7 +33,7 @@ typedef struct {
       int* winMode;
 } Camera;
 void camera_start(Camera* self, Window* w);
-void camera_init(Camera* self, float sensitivity, float speed, float nearZ, float farZ, float fov, vec3* position, vec3* direction, char* ID);
+void camera_init(Camera* self, float sensitivity, float speed, float nearZ, float farZ, float fov, vec3* position, vec3* direction, const char* ID);
 void camera_update(Camera* self, double deltaTime);                     // Basically constitutes the camera controller
 void camera_setSensitivity(Camera* self, float sensitivity);
 void camera_setSpeed(Camera* self, float speed);
@@ -55,6 +55,11 @@ typedef struct {
 
 /* Renderer ***********************************************************/
 typedef struct {
-      Object* subs;
+      const char* ID;
+      Window* window;
+      Camera* camera;
+      VideoShader* shader;
+      List objPtrs;
 } Renderer;
+void renderer_setup(Renderer* self, const char* windowName, unsigned int width, unsigned int height, const char* vShaderPath, const char* fShaderPath);
 /* Renderer ***********************************************************/

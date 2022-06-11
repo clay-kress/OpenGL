@@ -316,11 +316,11 @@ bool window_open(Window* self, const char* name, unsigned int width, unsigned in
       glfwSetWindowSizeCallback(self->window, windowResizeCallback);
       glViewport(0, 0, self->width, self->height);
       // Set certain OpenGL directives
-      //glEnable(GL_DEPTH_TEST);                                          // Enable depth test
-      //glDepthFunc(GL_LESS);                                             // Accept fragment if it closer to the camera than the former one
-      //glEnable(GL_CULL_FACE);                                           // Enable face culling
-      //glFrontFace(GL_CCW);                                              // Define the front face as one that is wrapped counter clockwise
-      //glCullFace(GL_BACK);                                              // Tell OpenGL to cull the back face
+      glEnable(GL_DEPTH_TEST);                                          // Enable depth test
+      glDepthFunc(GL_LESS);                                             // Accept fragment if it closer to the camera than the former one
+      glEnable(GL_CULL_FACE);                                           // Enable face culling
+      glFrontFace(GL_CCW);                                              // Define the front face as one that is wrapped counter clockwise
+      glCullFace(GL_BACK);                                              // Tell OpenGL to cull the back face
       return true;
 }
 void window_bind(Window* self) {
