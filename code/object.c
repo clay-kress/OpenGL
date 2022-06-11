@@ -52,7 +52,7 @@ void camera_update(Camera* self, double deltaTime) {
             vec3_normalize(&self->direction, &self->direction);
             // Init and scale velocity, up, and right
             vec3 velocity, right, up;
-            memcpy(&velocity, &self->direction, sizeof(vec3));
+            vec3_init(&velocity, sin(self->horizontalAngle), 0, cos(self->horizontalAngle));
             memcpy(&up, &self->up, sizeof(vec3));
             vec3_cross(&self->direction, &self->up, &right);
             vec3_normalize(&right, &right);
@@ -140,3 +140,9 @@ mat4* camera_getProjection(Camera* self) {
       return &self->projection;
 }
 /* Camera *************************************************************/
+
+/* Renderer ***********************************************************/
+void renderer_setup() {
+      
+}
+/* Renderer ***********************************************************/

@@ -52,3 +52,9 @@ mat4* camera_getProjection(Camera* self);
 typedef struct {
 } Object;
 /* Object *************************************************************/
+
+/* Renderer ***********************************************************/
+typedef struct {
+      Object* subs;
+} Renderer;
+/* Renderer ***********************************************************/
