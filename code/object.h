@@ -26,7 +26,7 @@ typedef struct {
       mat4 view;
       mat4 projection;
       // Contains a bunch of references to window information
-      GLFWwindow** windowRef;
+      Window* windowRef;
       unsigned int* width;
       unsigned int* height;
       float* aspect;
@@ -48,9 +48,26 @@ mat4* camera_getView(Camera* self);
 mat4* camera_getProjection(Camera* self);
 /* Camera *************************************************************/
 
+/* Vertex *************************************************************/
+typedef struct {
+      vec3 pos;
+      vec2 uv;
+      vec3 normal;
+} Vertex;
+/* Vertex *************************************************************/
+
 /* Object *************************************************************/
 typedef struct {
+      const char* objFile;
+      vec3 globalPosition;
+      vec3 globalScale;
+      mat4 globalRotation;
+      VertexBuffer vb;
+      IndexBuffer ib;
+      Vertex* vertices;
+      ImageTexture* texture;
 } Object;
+bool object_load(const char* fileName);
 /* Object *************************************************************/
 
 /* Renderer ***********************************************************/
